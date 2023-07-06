@@ -1,17 +1,19 @@
-      ******************************************************************
-      * Author:
-      * Date:
-      * Purpose:
-      * Tectonics: cobc
-      ******************************************************************
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. YOUR-PROGRAM-NAME.
-       DATA DIVISION.
-       FILE SECTION.
-       WORKING-STORAGE SECTION.
-       PROCEDURE DIVISION.
-       MAIN-PROCEDURE.
-            DISPLAY "Hello world"
-            STOP RUN.
-       END PROGRAM YOUR-PROGRAM-NAME.
+       PROGRAM-ID. HELLO.
 
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 WS-TABLE.
+           05 WS-A PIC 9(1) OCCURS 10 TIMES INDEXED BY I.
+
+       01 WS-SRCH PIC 9(1) VALUE '0'.
+
+       PROCEDURE DIVISION.
+           MOVE '1234567890' TO WS-TABLE.
+           SET I TO 1.
+           SEARCH WS-A
+             AT END DISPLAY 'ZERO NOT FOUND IN TABLE'
+             WHEN WS-A(I) = WS-SRCH
+             DISPLAY 'NUMBER ZERO FOUND IN TABLE'
+           END-SEARCH.
+           STOP RUN.
